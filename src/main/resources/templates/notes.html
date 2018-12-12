@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<meta charset="utf-8" />
+<title>Notes</title>
+<style>
+.body {
+	background-color: #404040;
+	}
+	body  {
+   background-image: url(C:/Users/hicha/OneDrive/Bureau/back.jpg) no-repeat fixed center;
+   background-color: #e6f7ff; 
+}
+</style>
+</head>
+<body>
+<header>
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a th:href="@{allNote}">Mes notes</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>
+	<div class="container" style="margin-left: 300px;">
+		<div class="col col-md-6" style="text-align: center;">
+			<div class="panel panel-info">
+				<div class="panel-heading">Notes</div>
+				<div class="panel-body">
+
+					<form th:action="@{saveNote}" method="post" enctype="multipart/form-data">
+
+						<div class="form-group">
+							<label>Titre</label> <input type="text" name="titre"
+								class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Date Creation Note</label> <input type="date" name="dateCreation"
+								class="form-control" />
+						</div>
+
+						<div class="form-group">
+							<label>Note</label>
+							<textarea style="background-color:;" name="noty" cols="16"  rows="14" class="form-control"></textarea>
+						</div>
+						<div class="form-group">
+							<label>Desception</label> <input type="text" name="descreption"
+								class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Photo</label> <input type="file"
+							accept=".doc,.docx,.pdf,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+							 name="picture"
+								class="form-control" />
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-xs btn-success" style=" width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;"><span class="glyphicon glyphicon-ok">
+				</span></button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

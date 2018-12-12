@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<meta charset="utf-8" />
+<title>Notes</title>
+<style>
+.body {
+	background-color: #404040;
+}
+</style>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-inverse">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">G_Prd</a>
+				</div>
+				<div id="navbar" class="collapse navbar-collapse">
+					
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div>
+		<ul class="nav nav-pills nav-stacked"
+			style="width: 5px; text-align: center;">
+			<li th:each="pa,status:${pages}"
+				th:class="${pagedef}==${status.index}?'active':''"><a
+				th:href="@{index(page=${status.index},size=${size},motCle=${motCle})}"
+				th:text="${status.index}"></a></li>
+		</ul>
+	</div>
+	<div class="container">
+		<div class="col col-md-4" style="text-align: center;"
+			th:each="note:${notes}">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<a onclick="return confirm('vous ete sur de supprimer ce produit')"
+						th:href="@{delete(id=${note.id},page=${pagedef},size=${size},motCle=${motCle})}"><span
+						class="glyphicon glyphicon-remove-circle"></span></a> <a
+						th:href="@{edit(id=${note.id})}"> <span
+						class="glyphicon glyphicon-refresh"> </span></a> <a
+						th:href="@{showNote(id=${note.id})}"><span
+						class="glyphicon glyphicon-eye-open"></span></a>
+					<p th:text="${note.titre}">
+				</div>
+				<div class="panel-body">
+					<p th:text="${note.titre}">
+					<p th:text="${note.descreption}">
+						<!-- 					<p th:text="${note.noty}"> -->
+					<table>
+						<tr>
+							<td><a th:href="@{getp(id=${note.id})}"><embed
+										th:src="@{getp(id=${note.id})}" width="100" height="100"
+										type='application/pdf'></a></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

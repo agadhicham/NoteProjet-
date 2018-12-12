@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous"/>
+
+<meta charset="utf-8" />
+<title>produits</title>
+
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	type="text/css" th:href="@{css/bootstrap.min.css}" />
+
+</head>
+<body >
+<header>
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Mes notes</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a th:href="@{index}">Chercher</a></li>
+					<li><a th:href="@{form}">Produits</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>
+<div class="spacer col-md-6">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Saisie Produit</div>
+		<div class="panel-body">
+		<form th:action="@{saveNote}" method="post">
+			<div class="form-group">
+				<label class="control-label">Id:</label> <input
+					class="form-control" type="text" name="id" th:value="${note.id}" />
+			</div>
+			<div class="form-group">
+				<label class="control-label">Désignation:</label> <input
+					class="form-control" type="text" name="titre" th:value="${note.titre}" />
+			</div>
+			<div class="form-group">
+				<label class="control-label">Prix:</label> <input
+					class="form-control" type="text" name="noty" th:value="${note.noty}" />
+			</div>
+			<div class="form-group">
+				<label class="control-label">Quantité:</label> <input
+					class="form-control" type="text" name="descreption" th:value="${note.descreption}" />
+			</div>
+			<button type="submit" class="btn btn-primary">Save</button>
+			</form>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous"/>
+
+<meta charset="utf-8" />
+<title>Note</title>
+
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	type="text/css" th:href="@{css/bootstrap.min.css}" />
+
+</head>
+<body>
+<header>
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a th:href="@{allNote}">Acceuil</a></li>
+					<li><a th:href="@{note}">Nouvaeu Note</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>
+<div th:each="note:${notes}">
+<div class="spacer col-md-3">
+	<div class="panel panel-success">
+		<div class="panel-heading">Note Media Video & Audio</div>
+		<div class="panel-body">
+		<div style="text-align:center"> 
+  <button onclick="playPause()" class="btn btn-info btn-xs">Play/Pause</button> 
+  <button onclick="makeBig()" class="btn btn-danger btn-xs">Big</button>
+  <button onclick="makeSmall()" class="btn btn-primary btn-xs">Small</button>
+  <button onclick="makeNormal()" class="btn btn-success btn-xs">Normal</button>
+  <br><br>
+  <video id="video1" width="260">
+    <source th:src="@{getp(id=${note.id})}" type="video/mp4">
+    <source th:src="@{getp(id=${note.id})}" type="video/ogg">
+  </video>
+  <audio controls>
+  <source th:src="@{getp(id=${note.id})}" type="audio/ogg">
+  <source th:src="@{getp(id=${note.id})}" type="audio/mpeg">
+</audio>
+</div> 
+		
+		</div>
+	</div>
+	</div>
+	<div class="spacer col-md-3">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Note image Media</div>
+		<div class="panel-body">
+		<a th:href="@{getp(id=${note.id})}"><span class="label label-danger" >+ 100% -</span></a>
+		<img  th:if="${note}" th:src="@{getp(id=${note.id})}" width="200" class="img-circle" height="200" >
+		</div>
+	</div>
+	</div>
+	<div class="spacer col-md-3">
+	<div class="panel panel-danger">
+		<div class="panel-heading">Note pdf</div>
+		<div class="panel-body">
+		<a th:href="@{getp(id=${note.id})}"><span class="label label-danger" ></span></a>
+		<embed th:src="@{getp(id=${note.id})}" width="200" height="200" 
+ type='application/pdf'>
+		</div>
+	</div>
+	</div>
+	<div class="spacer col-md-3">
+	<div class="panel panel-info">
+		<div class="panel-heading">Note Texte</div>
+		<div class="panel-body">
+		<pre><h4><span class="label label-default" th:text="${note.noty}"></span></h4></pre>
+		
+		</div>
+	</div>
+	</div>
+<div class="spacer col-md-3">
+	<div class="panel panel-warning">
+		<div class="panel-heading">Note details</div>
+		<div class="panel-body">
+		<h2><span class="label label-primary" th:text="${note.titre}"></span></h2>
+		<h3><span class="label label-info" th:text="${note.dateCreation}"></span></h3>
+		<h4><span class="label label-warning" th:text="${note.descreption}"></span></h4>
+		</div>
+	</div>
+	</div>
+	
+	
+	
+	</div>
+	<script> 
+var myVideo = document.getElementById("video1"); 
+
+function playPause() { 
+  if (myVideo.paused) 
+    myVideo.play(); 
+  else 
+    myVideo.pause(); 
+} 
+
+function makeBig() { 
+    myVideo.width = 560; 
+} 
+
+function makeSmall() { 
+    myVideo.width = 320; 
+} 
+
+function makeNormal() { 
+    myVideo.width = 420; 
+} 
+</script> 
+	
+</body>
+</html>
